@@ -16,6 +16,11 @@ a {
 .artist{cursor: pointer;}
 .album{cursor: pointer;}
 
+.clearfix:after{
+    content:"";
+    display: block;
+    clear: both;
+}
 /*自定义文字*/
 @font-face {
     font-family: "icon";
@@ -422,3 +427,8 @@ footer a:hover {
     border-radius: 5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset;
 background: #258fb8;}
+
+#player .ctrl .icon.active{
+    opacity: 1;
+    /*color: orangered;*/
+}

@@ -44,27 +44,23 @@
                 <div class="loaded" ></div>
 
             </div>
+        </div>
+        <div class="clearfix">
             <div class="timer left">
                 <span id="currentTime">00:00</span>/
                 <span id="duration">00:00</span></div>
             <div class="right">
-                <div class="repeat icon"></div>
-                <div class="shuffle icon"></div>
+                <div class="repeat icon active" title="循环播放"></div>
+                <div class="shuffle icon" title="随机播放"></div>
             </div>
         </div>
     </div>
 </div>
-<audio src="Music/陈奕迅-陪你度过漫长岁月.mp3" id="audio"  loop preload="auto">
+<audio id="audio">
     您的浏览器版本太旧,不支持该服务!<a href="#">升级浏览器</a>
 </audio>
-<ul id="playlist">
-    <li class="plays">陈奕迅-陪你度过漫长岁月</li>
-    <li>李代沫-遗憾</li>
-    <li>陈奕迅-你的背包</li>
-    <li>陈奕迅-明年今日</li>
-    <li>李代沫-我是不是你最疼爱的人</li>
-    <li>李代沫-骨子里的我</li>
-</ul>
-<script src="js/music.js"></script>
+<ul id="playlist"></ul>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/play.js"></script>
 </body>
 </html>
