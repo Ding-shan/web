@@ -1,0 +1,424 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    background: #c7bda2;
+    color: #fff;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+}
+.artist{cursor: pointer;}
+.album{cursor: pointer;}
+
+/*自定义文字*/
+@font-face {
+    font-family: "icon";
+    src: url("../font/iconfont.eot"), url("../font/iconfont.svg"), url("../font/iconfont.ttf"), url("../font/iconfont.woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.button {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    vertical-align: baseline;
+    margin: 0 2px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: 0.25em 0.6em 0.3em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    border-radius: .5em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+
+.red {
+    color: #faddde;
+    border: solid 1px #980c10;
+    background: #d81b21;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
+}
+
+.red:hover {
+    background: #b61318;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c9151b', endColorstr='#a11115');
+    color: #fff;
+}
+
+.red:active {
+    color: #de898c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#aa1317), to(#ed1c24));
+    background: -moz-linear-gradient(top, #aa1317, #ed1c24);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
+}
+
+.cor_bs, .cor_bs:hover {
+    color: #ffffff;
+}
+
+.kePublic {
+    background: #333;
+    padding: 50px;
+}
+
+.keTxtP {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.keUrl {
+    color: #FFF;
+    font-size: 30px;
+}
+
+.keUrl:hover {
+    text-decoration: underline;
+    color: #FFF;
+}
+
+.mKeBanner, .mKeBanner div {
+    text-align: center;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+#background {
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#player {
+    width: 500px;
+    height: 130px;
+    padding: 25px;
+    margin: 50px auto 30px;
+    position: relative;
+}
+
+#player .cover {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 130px;
+    height: 130px;
+
+    box-shadow: 0 2px 10px black;
+}
+
+#player .cover img {
+
+    border-radius: 10px;
+    width: 130px;
+    height: 130px;
+}
+
+#player .ctrl {
+    margin-left: 155px;
+    text-shadow: 0 1px 2px #000;
+    line-height: 16px;
+}
+
+#player .ctrl .tag strong, #player .ctrl .tag span {
+    display: block;
+    text-overflow: ellipsis;
+}
+
+#player .ctrl .tag span {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #ccc;
+}
+
+#player .ctrl .icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    opacity: 0.6;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+
+}
+
+.rewind:after {
+    font-family: "icon";
+    content: "\e602";
+    font-size: 20px;
+
+}
+
+.playback>a:nth-child(2):after {
+    color: white;
+    position: absolute;
+    font-family: "icon";
+    content: "\e87a";
+    font-size: 20px;
+    margin-top: 8px;
+
+}
+.playback>a:nth-child(2){  display: none;}
+.playback>a:nth-child(1):after {
+    position: absolute;
+    font-family: "icon";
+    content: "\e87c";
+    font-size: 20px;
+    margin-left: 2px;
+    color: white;
+
+    margin-top: 8px;
+}
+.fastforward:after {
+    font-family: "icon";
+    content: "\e601";
+    font-size: 20px;
+}
+.mute{margin-top: 5px;}
+.mute>a:nth-child(1):after {
+    position: absolute;
+    font-family: "icon";
+    content: "\e730";
+    font-size: 20px;
+color: white;
+}
+.mute>a:nth-child(2):after {
+    position: absolute;
+    font-family: "icon";
+    content: "\e730";
+    font-size: 20px;
+    color: pink;
+    display: none;
+}
+
+
+.repeat:after {bottom: 33px;
+    position: absolute;
+    font-family: "icon";
+    content: "\e630";
+    font-size: 16px;
+}
+
+
+.shuffle:after {
+    position: absolute;
+    font-family: "icon";
+    content: "\e600";
+    font-size: 20px;
+}
+
+#playlist .plays{color: palevioletred;}
+.plays{position: relative;}
+.plays:after{ position: absolute;
+    top: -8px;
+    left: 2px;
+    font-family: "icon";
+    content: "\e730";
+    font-size: 20px;
+    color: palevioletred; }
+.play1{margin-top:-5px;}
+#player .ctrl .icon:hover, #player .ctrl .icon.enable {
+    opacity: 1;
+}
+
+#player .ctrl .icon:active {
+    opacity: 0.3;
+}
+
+#player .ctrl .control {
+    margin-top: 10px;
+    height: 25px;
+}
+
+#player .ctrl .control .volume .slider {
+    margin-top: 11px;
+    margin-left: 10px;
+    width: 100px;
+}
+
+#player .ctrl .progress {
+    margin-top: 10px;
+    background-color: #8b8471;
+    cursor: pointer;
+
+}
+
+#player .ctrl .progress .timer {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 8px;
+}
+
+#player .ctrl .progress .repeat, #player .ctrl .progress .shuffle {
+    background-position: center bottom;
+}
+
+#player .ctrl .progress .repeat.once, #player .ctrl .progress .repeat.all {
+    opacity: 1;
+}
+
+#player .ctrl .progress .repeat.once {
+    position: relative;
+}
+
+#player .ctrl .progress .repeat.once:before {
+    content: "1";
+    position: absolute;
+    top: 3px;
+    right: -2px;
+    font-size: 8px;
+}
+/*播放小圆点*/
+#progressBar {
+    position: relative;}
+#progressBtn {
+    position: absolute;
+    left: 100%;
+    top: -25%;
+    margin-left: -8px;
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #ccc;
+    cursor: pointer;
+}
+.slider {
+    background:#258fb8;
+    height: 5px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset;
+}
+
+.slider:hover a, .slider.enable a {
+    opacity: 1;
+}
+
+.slider a {
+    background: #fff;
+    margin-left: -2.5px;
+    position: absolute;
+    opacity: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    transition: opacity 0.3s;
+}
+
+.slider .loaded, .slider .pace {
+    position: absolute;
+    height: 100%;
+    opacity: 0.7;
+    border-radius: 5px;
+}
+
+.slider .loaded {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.slider .pace {
+    background: #258fb8;
+}
+
+#playlist {
+    background: rgba(0, 0, 0, 0.5);
+    width: 470px;
+    margin: 0 auto 50px;
+    padding: 10px 15px;
+    list-style: none;
+    position: relative;
+    border-radius: 5px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+#playlist li {
+    color: #aaa;
+    font-size: 12px;
+    line-height: 2;
+    padding-left: 25px;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    transition: 0.3s;
+}
+
+#playlist li:hover {
+    color: #fff;
+}
+
+footer {
+    position: relative;
+    font-size: 12px;
+    color: white;
+    margin-top: 160px;
+    text-shadow: 0 1px 2px #000;
+    text-align: center;
+}
+
+footer a {
+    color: #fff;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+/*音量设置*/
+#volumeProgress {
+    position: relative;}
+#volumeProgressBtn {
+    position: absolute;
+    left: 100%;
+    top: -25%;
+    margin-left: -4px;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 3px #ccc;
+    cursor: pointer;
+}
+.sliders{margin-top: 11px;
+    margin-left: 10px;
+    width: 100px;
+    height: 5px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset;}
+.pace{width: 100px;
+    height: 5px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset;
+background: #258fb8;}

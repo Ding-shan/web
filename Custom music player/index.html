@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="background"></div>
+
+<div id="player">
+    <div class="cover"><img src="images/3.jpg"></div>
+
+    <div class="ctrl">
+        <div class="tag">
+            <strong id="name">陈奕迅-陪你度过漫长岁月</strong>
+            <span class="artist">Music</span>
+            <span class="album">mp3</span>
+        </div>
+        <div class="control">
+            <div class="play1 left">
+                <div id="btn1" class="rewind icon">
+                </div>
+                <div class="playback icon">
+                    <a href="javascript:void(0)" id="play" class="left"></a>
+                    <a href="javascript:void(0)" id="pause" class="left"></a></div>
+                <div id="btn2" class="fastforward icon"></div>
+            </div>
+            <div class="volume right">
+                <div class="mute icon left" id="mute">
+                    <a href="javascript:void(0)" id="mute1" class="left"></a>
+                    <a href="javascript:void(0)" id="mute2" class="left"></a>
+                </div>
+                <div id="volumeProgress" class="sliders left" >
+                    <div id="volumeProgressBar" class="pace" style="width: 50%;" ><span id="volumeProgressBtn"></span></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="progress" id="progresss">
+            <div class="slider" id="progressBar" style="width: 0;">
+                <span id="progressBtn"></span>
+                <div class="loaded" ></div>
+
+            </div>
+            <div class="timer left">
+                <span id="currentTime">00:00</span>/
+                <span id="duration">00:00</span></div>
+            <div class="right">
+                <div class="repeat icon"></div>
+                <div class="shuffle icon"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<audio src="Music/陈奕迅-陪你度过漫长岁月.mp3" id="audio"  loop preload="auto">
+    您的浏览器版本太旧,不支持该服务!<a href="#">升级浏览器</a>
+</audio>
+<ul id="playlist">
+    <li class="plays">陈奕迅-陪你度过漫长岁月</li>
+    <li>李代沫-遗憾</li>
+    <li>陈奕迅-你的背包</li>
+    <li>陈奕迅-明年今日</li>
+    <li>李代沫-我是不是你最疼爱的人</li>
+    <li>李代沫-骨子里的我</li>
+</ul>
+<script src="js/music.js"></script>
+</body>
+</html>
