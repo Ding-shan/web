@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+    <style>
+        ul,li{
+            list-style: none;
+        }
+        #page{
+            background-image: url("images/dzq.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 100%;
+        }
+       #page .ui-panel-wrapper{
+            background-color: rgba(0,0,0,.5);
+        }
+        .songTitle{
+            color: rgba(255,255,255,.1);
+            text-align: center;
+        }
+        #Lrcbox{
+            text-align: center;
+            line-height: 2em;
+            color: #e5e5e5;
+            text-shadow: 0 0 3px #fff;
+            height: 24em;
+            overflow: hidden;
+            font-size: 18px;
+        }
+        #lrc_list li{
+            transition: all 0.35s;
+            cursor: pointer;
+        }
+        #lrc_list li.hover{
+            transform: scale(1.2);
+            text-shadow: none;
+            color:yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<audio id="audio" style="display: none;"></audio>
+<!--定义一个页面-->
+<div data-role="page" id="page">
+    <!--定义页面的头部-->
+    <div data-role="header">
+        <a href="">返回</a>
+        <a href="#songList">播放列表</a>
+        <h2>音乐播放器</h2>
+    </div>
+    <!--歌曲列表面板-->
+    <div data-role="panel" id="songList">
+        <h3 style="text-align: center">歌曲列表</h3>
+        <ul data-role="listview" data-inset="true"></ul>
+    </div>
+    <!--定义页面的内容-->
+    <div data-role="content">
+        <h2 class="songTitle">喜欢你-邓紫棋</h2>
+        <div id="Lrcbox">
+          <ul id="lrc_list"></ul>
+        </div>
+    </div>
+    <!--定义页面的底部-->
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li class="play"><a href="javascript:void(0)">播放</a></li>
+                <li class="pause"><a href="javascript:void(0)">暂停</a></li>
+                <li class="prev"><a href="javascript:void(0)">上一首</a></li>
+                <li class="next"><a href="javascript:void(0)">下一首</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/lrc.js"></script>
+<script>
+    var audio = document.querySelector("#audio");//获取音频对象
+//    var playStatus = false; //播放状态, false暂停 true 播放
+    var index = 0;//标识歌曲索引
+    var time = 0;
+    //模拟音乐数据
+    var musicData =[
+        {
+            "title":"刚好遇见你-李玉刚",
+            "music":"music/ghyjn.mp3",
+            "singer":"images/lyg.jpg",
+            "lrc":"lrc/ghyjn.lrc"
+        },
+        {
+            "title":"绅士-薛之谦",
+            "music":"music/shenshi.mp3",
+            "singer":"images/xzq.jpg",
+            "lrc":"lrc/shenshi.lrc"
+        }, {
+            "title":"喜欢你-邓紫棋",
+            "music":"music/xhn.mp3",
+            "singer":"images/dzq.jpg",
+            "lrc":"lrc/xhn.lrc"
+        }, {
+            "title":"演员-薛之谦",
+            "music":"music/yanyuan.mp3",
+            "singer":"images/xzq.jpg",
+            "lrc":"lrc/yanyuan.lrc"
+        }
+    ]
+    //数据加载完毕之后，插入
+    var htmlStr = '';
+    for(var i=0;i<musicData.length;i++){
+        htmlStr+='<li data-id="'+i+'"><a href="javascript:void(0)" data-rel="close">'+musicData[i].title+'</a></li>'
+    }
+    $("#songList ul").html(htmlStr);
+
+    function initMusic(){//歌曲初始化函数
+        //设置对应的歌曲路径
+        audio.src=musicData[index].music;
+        //设置歌曲标题
+        $(".songTitle").html(musicData[index].title)
+        //更换背景图片
+        setTimeout(function(){
+            $("#page").css("background-image",'url("'+musicData[index].singer+'")');
+        },1)
+        //歌词更换
+        $.get(musicData[index].lrc,function(data){
+            $.lrc.start(data,function(){//调用歌词插件
+                return time;
+            })
+            $.mobile.loading('hide');//隐藏加载动画
+        })
+    }
+
+    //加载动画
+    $.mobile.loading('show');
+    initMusic();
+    //时间更新
+    audio.addEventListener('timeupdate',function(){
+        time = this.currentTime;
+    })
+
+    /*****************************功能区域***************************/
+    //播放
+    $(".play").click(function(){
+        playMusic();
+    })
+    $(".pause").click(function(){
+        pauseMusic();
+    })
+//    上下切换
+    $(".prev").click(function(){
+        index--;
+        if(index<0)index=musicData.length-1;
+        initMusic();
+        playMusic();
+    })
+
+    $(".next").click(function(){
+        index++;
+        if(index>musicData.length)index=0;
+        initMusic();
+        playMusic();
+    })
+    //歌曲列表点播
+    $("#songList li").click(function(){
+        index = $(this).data('id');
+        initMusic();
+        playMusic();
+    })
+    //播放的功能函数
+    function playMusic(){
+        if(audio.paused){
+//            audio.src=musicData[0].music; //临时设置，待会更改
+            audio.play();
+        }
+    }
+    //暂停的功能函数
+    function pauseMusic(){
+        if(!audio.paused){
+            audio.pause();//暂停
+        }
+    }
+</script>
+</body>
+</html>
